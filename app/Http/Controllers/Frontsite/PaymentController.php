@@ -108,4 +108,9 @@ class PaymentController extends Controller
     {
         return abort(404);
     }
+
+    public function success()
+    {
+        return view('pages.frontsite.success.payment-success');
+    }
 }
