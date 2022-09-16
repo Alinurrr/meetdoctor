@@ -2,6 +2,7 @@
 
 // backsite
 use App\Http\Controllers\Backsite\DashboardController;
+use App\Http\Controllers\Backsite\DoctorController;
 use App\Http\Controllers\Backsite\SpecialistController;
 use App\Http\Controllers\Backsite\TypeUserController;
 
@@ -45,6 +46,9 @@ Route::group(['prefix' => 'backsite', 'as' => 'backsite.', 'middleware' => ['aut
 
     // specialits
     Route::resource('specialist', SpecialistController::class);
+
+    // doctor
+    Route::resource('doctor', DoctorController::class);
 });
 
 // Route::get('/', function () {
