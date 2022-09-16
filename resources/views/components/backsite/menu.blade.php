@@ -10,6 +10,47 @@
                         class="menu-title" data-i18n="Dashboard">Dashboard</span>
                 </a>
             </li>
+            <li class=" navigation-header"><span data-i18n="Application">Application</span><i class="la la-ellipsis-h"
+                    data-toggle="tooltip" data-placement="right" data-original-title="Application"></i>
+            </li>
+            <li class=" nav-item"><a href="#"><i
+                        class="{{ request()->is('backsite/permission') || request()->is('backsite/permission/*') || request()->is('backsite/*/permission') || request()->is('backsite/*/permission/*') || request()->is('backsite/role') || request()->is('backsite/role/*') || request()->is('backsite/*/role') || request()->is('backsite/*/role/*') || request()->is('backsite/user') || request()->is('backsite/user/*') || request()->is('backsite/*/user') || request()->is('backsite/*/user/*') || request()->is('backsite/type_user') || request()->is('backsite/type_user/*') || request()->is('backsite/*/type_user') || request()->is('backsite/*/type_user/*') ? 'bx bx-group bx-flashing' : 'bx bx-group' }}"></i><span
+                        class="menu-title" data-i18n="Management Access">Management Access</span></a>
+                <ul class="menu-content">
+                    {{-- @can('permission_access') --}}
+                    <li
+                        class="{{ request()->is('backsite/permission') || request()->is('backsite/permission/*') || request()->is('backsite/*/permission') || request()->is('backsite/*/permission/*') ? 'active' : '' }} ">
+                        <a class="menu-item" href="{{ route('backsite.permission.index') }}">
+                            <i></i><span>Permission</span>
+                        </a>
+                    </li>
+                    {{-- @endcan --}}
+                    {{-- @can('role_access') --}}
+                    <li
+                        class="{{ request()->is('backsite/role') || request()->is('backsite/role/*') || request()->is('backsite/*/role') || request()->is('backsite/*/role/*') ? 'active' : '' }} ">
+                        <a class="menu-item" href="{{ route('backsite.role.index') }}">
+                            <i></i><span>Role</span>
+                        </a>
+                    </li>
+                    {{-- @endcan --}}
+                    {{-- @can('type_user_access') --}}
+                    <li
+                        class="{{ request()->is('backsite/type_user') || request()->is('backsite/type_user/*') || request()->is('backsite/*/type_user') || request()->is('backsite/*/type_user/*') ? 'active' : '' }} ">
+                        <a class="menu-item" href="{{ route('backsite.type_user.index') }}">
+                            <i></i><span>Type User</span>
+                        </a>
+                    </li>
+                    {{-- @endcan --}}
+                    {{-- @can('user_access') --}}
+                    <li
+                        class="{{ request()->is('backsite/user') || request()->is('backsite/user/*') || request()->is('backsite/*/user') || request()->is('backsite/*/user/*') ? 'active' : '' }} ">
+                        <a class="menu-item" href="{{ route('backsite.user.index') }}">
+                            <i></i><span>User</span>
+                        </a>
+                    </li>
+                    {{-- @endcan --}}
+                </ul>
+            </li>
 
         </ul>
     </div>
