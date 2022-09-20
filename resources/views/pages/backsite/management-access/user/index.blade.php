@@ -234,44 +234,45 @@
                                                                 </td>
 
                                                                 <td class="text-center">
-                                                                    {{-- @can('user_show' || 'user_edit' || 'user_delete') --}}
-                                                                    <div class="btn-group mr-1 mb-1">
-                                                                        <button type="button"
-                                                                            class="btn btn-info btn-sm dropdown-toggle"
-                                                                            data-toggle="dropdown" aria-haspopup="true"
-                                                                            aria-expanded="false">Action</button>
-                                                                        <div class="dropdown-menu">
-                                                                            {{-- @can('user_show') --}}
-                                                                            <a href="#mymodal"
-                                                                                data-remote="{{ route('backsite.user.show', $user_item->id) }}"
-                                                                                data-toggle="modal" data-target="#mymodal"
-                                                                                data-title="User Detail"
-                                                                                class="dropdown-item">
-                                                                                Show
-                                                                            </a>
-                                                                            {{-- @endcan --}}
-                                                                            {{-- @can('user_edit') --}}
-                                                                            <a class="dropdown-item"
-                                                                                href="{{ route('backsite.user.edit', $user_item->id) }}">
-                                                                                Edit
-                                                                            </a>
-                                                                            {{-- @endcan --}}
-                                                                            {{-- @can('user_delete') --}}
-                                                                            <form
-                                                                                action="{{ route('backsite.user.destroy', $user_item->id) }}"
-                                                                                method="POST"
-                                                                                onsubmit="return confirm('Are you sure want to delete this data ?');">
-                                                                                <input type="hidden" name="_method"
-                                                                                    value="DELETE">
-                                                                                <input type="hidden" name="_token"
-                                                                                    value="{{ csrf_token() }}">
-                                                                                <input type="submit" class="dropdown-item"
-                                                                                    value="Delete">
-                                                                            </form>
-                                                                            {{-- @endcan --}}
+                                                                    @canany(['user_show', 'user_edit', 'user_delete'])
+                                                                        {{-- @can('user_show' || 'user_edit' || 'user_delete') --}}
+                                                                        <div class="btn-group mr-1 mb-1">
+                                                                            <button type="button"
+                                                                                class="btn btn-info btn-sm dropdown-toggle"
+                                                                                data-toggle="dropdown" aria-haspopup="true"
+                                                                                aria-expanded="false">Action</button>
+                                                                            <div class="dropdown-menu">
+                                                                                @can('user_show')
+                                                                                    <a href="#mymodal"
+                                                                                        data-remote="{{ route('backsite.user.show', $user_item->id) }}"
+                                                                                        data-toggle="modal" data-target="#mymodal"
+                                                                                        data-title="User Detail"
+                                                                                        class="dropdown-item">
+                                                                                        Show
+                                                                                    </a>
+                                                                                @endcan
+                                                                                @can('user_edit')
+                                                                                    <a class="dropdown-item"
+                                                                                        href="{{ route('backsite.user.edit', $user_item->id) }}">
+                                                                                        Edit
+                                                                                    </a>
+                                                                                @endcan
+                                                                                @can('user_delete')
+                                                                                    <form
+                                                                                        action="{{ route('backsite.user.destroy', $user_item->id) }}"
+                                                                                        method="POST"
+                                                                                        onsubmit="return confirm('Are you sure want to delete this data ?');">
+                                                                                        <input type="hidden" name="_method"
+                                                                                            value="DELETE">
+                                                                                        <input type="hidden" name="_token"
+                                                                                            value="{{ csrf_token() }}">
+                                                                                        <input type="submit" class="dropdown-item"
+                                                                                            value="Delete">
+                                                                                    </form>
+                                                                                @endcan
+                                                                            </div>
                                                                         </div>
-                                                                    </div>
-                                                                    {{-- @endcan --}}
+                                                                    @endcanany
                                                                 </td>
 
                                                             </tr>
