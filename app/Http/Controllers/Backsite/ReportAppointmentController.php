@@ -3,7 +3,6 @@
 namespace App\Http\Controllers\Backsite;
 
 use App\Http\Controllers\Controller;
-use Illuminate\Http\Request;
 
 // use library here
 use Illuminate\Support\Facades\Storage;
@@ -19,7 +18,6 @@ use App\Models\Operational\Doctor;
 use App\Models\Operational\Transaction;
 use App\Models\User;
 use App\Models\MasterData\Consultation;
-
 
 // thirdparty package
 
@@ -42,12 +40,14 @@ class ReportAppointmentController extends Controller
      */
     public function index()
     {
+        abort_if(Gate::denies('appointment_access'), Response::HTTP_FORBIDDEN, '403 Forbidden');
+
         $type_user_condition = Auth::user()->detail_user->type_user_id;
 
-        if ($type_user_condition == 1) {
+        if($type_user_condition == 1){
             // for admin
             $appointment = Appointment::orderBy('created_at', 'desc')->get();
-        } else {
+        }else{
             // other admin for doctor & patient ( task for everyone here )
             $appointment = Appointment::orderBy('created_at', 'desc')->get();
         }

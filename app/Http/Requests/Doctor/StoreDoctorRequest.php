@@ -16,7 +16,6 @@ class StoreDoctorRequest extends FormRequest
      */
     public function authorize()
     {
-
         abort_if(Gate::denies('doctor_create'), Response::HTTP_FORBIDDEN, '403 Forbidden');
 
         return true;
@@ -30,6 +29,9 @@ class StoreDoctorRequest extends FormRequest
     public function rules()
     {
         return [
+            'user_id' => [
+                'required', 'integer',
+            ],
             'specialist_id' => [
                 'required', 'integer',
             ],
@@ -40,7 +42,7 @@ class StoreDoctorRequest extends FormRequest
                 'required', 'string', 'max:255',
             ],
             'photo' => [
-                'nullable', 'string', 'max:10000',
+                'nullable', 'mimes:jpeg,svg,png', 'max:10000',
             ],
         ];
     }

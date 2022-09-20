@@ -141,7 +141,7 @@ class RoleController extends Controller
         // need more notes here
         $role->forceDelete();
 
-        alert()->success('Success Message', 'Successfully deleted role');
+        alert()->success('Success Message','Successfully deleted role');
         return back();
     }
 }

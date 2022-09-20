@@ -5,23 +5,36 @@ namespace App\Http\Controllers\Backsite;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 
+// use library here
+use Symfony\Component\HttpFoundation\Response;
+
+// use everything here
+use Gate;
+use Auth;
+
 class DashboardController extends Controller
 {
-    /**
-     * Display a listing of the resource.
+     /**
+     * Create a new controller instance.
      *
-     * @return \Illuminate\Http\Response
+     * @return void
      */
     public function __construct()
     {
         $this->middleware('auth');
     }
 
+    /**
+     * Display a listing of the resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
     public function index()
     {
+        abort_if(Gate::denies('dashboard_access'), Response::HTTP_FORBIDDEN, '403 Forbidden');
+
         return view('pages.backsite.dashboard.index');
     }
-
 
     /**
      * Show the form for creating a new resource.
@@ -30,7 +43,7 @@ class DashboardController extends Controller
      */
     public function create()
     {
-        //
+        return abort();
     }
 
     /**
@@ -41,7 +54,7 @@ class DashboardController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        return abort();
     }
 
     /**
@@ -52,7 +65,7 @@ class DashboardController extends Controller
      */
     public function show($id)
     {
-        //
+        return abort();
     }
 
     /**
@@ -63,7 +76,7 @@ class DashboardController extends Controller
      */
     public function edit($id)
     {
-        //
+        return abort();
     }
 
     /**
@@ -75,7 +88,7 @@ class DashboardController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        return abort();
     }
 
     /**
@@ -86,6 +99,6 @@ class DashboardController extends Controller
      */
     public function destroy($id)
     {
-        //
+        return abort();
     }
 }

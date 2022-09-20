@@ -3,7 +3,6 @@
 namespace App\Http\Controllers\Backsite;
 
 use App\Http\Controllers\Controller;
-use Illuminate\Http\Request;
 
 // use library here
 use Illuminate\Support\Facades\Storage;
@@ -18,27 +17,28 @@ use App\Models\MasterData\TypeUser;
 
 // thirdparty package
 
-
-
 class TypeUserController extends Controller
 {
     /**
-     * Display a listing of the resource.
+     * Create a new controller instance.
      *
-     * @return \Illuminate\Http\Response
+     * @return void
      */
-
     public function __construct()
     {
         $this->middleware('auth');
     }
 
+    /**
+     * Display a listing of the resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
     public function index()
     {
+        abort_if(Gate::denies('type_user_access'), Response::HTTP_FORBIDDEN, '403 Forbidden');
+
         $type_user = TypeUser::all();
-
-
-        // dd($type_user);
 
         return view('pages.backsite.management-access.type-user.index', compact('type_user'));
     }
